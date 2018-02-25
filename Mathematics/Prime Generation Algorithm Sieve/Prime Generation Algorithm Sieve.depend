@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1519544063 source:i:\algorithm design\prime generation algorithm sieve\main.cpp
+	<iostream>
+	<cstring>
+	<ctime>
+
+1519546867 source:i:\algorithm-design\prime generation algorithm sieve\main.cpp
+	<iostream>
+	<cstring>
+	<ctime>
+
