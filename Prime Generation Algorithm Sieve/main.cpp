@@ -11,17 +11,19 @@ int SieveOfEratosthenes(long long n)
       //initialize all entries it as true = 0
       memset(prime, true, sizeof(prime));
     for (long long i=2; i*i<=n; i++){
-        // If prime[i] is not changed, then it is a prime
-        if (prime[i] == true){
-            // Update all multiples of p
-            for (long long j=i*2; j<=n; j += i)
-                prime[j] = false;
+      // If prime[i] is not changed, then it is a prime
+      if (prime[i] == true){
+        // Update all multiples of p
+        for (long long j=i*2; j<=n; j += i){
+          prime[j] = false;
         }
+      }
     }
 
+     // Print all prime numbers from 2 because 0 & 1 are not considered as prime number
 
     long long counter = 0;// calculate total number generated
-    // Print all prime numbers from 2 because 0 & 1 are not considered as prime number
+
     for (long long i=2; i<=n; i++){
       if (prime[i] == true){
         cout << i << " ";// hide this line to check Accurate Process time
@@ -30,7 +32,6 @@ int SieveOfEratosthenes(long long n)
     }
     cout << endl;
     return counter;
-
 }
 
 int main()
