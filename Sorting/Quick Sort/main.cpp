@@ -1,57 +1,66 @@
 #include <iostream>
-#include <time.h>
 
 using namespace std;
 
-int QuickSort(int elements[], int siz){
+int elements[1000];
 
-  int counter = 0;
+void exchange(int* x, int* y){
+  int temp = *x;
+  *x = *y;
+  *y = temp;
+}
 
+int Parition(int l, int h){
 
-    for(int i=0; i<siz; i++){
-      cout << elements[i] << " ";
+  int pivot = elements[h];
+  int i = (l-1);
+
+  for(int j=l; j <= h-1; j++){
+
+    if(elements[j] <= pivot){
+      i=i+1;
+      exchange(&elements[i], &elements[j]);
     }
+  }
 
-    cout << endl;
+  exchange(&elements[i+1], &elements[h]);
 
-  return counter;
+  return (i+1);
+
+}
+
+void QuickSort(int low, int high){
+  int pivot_point;
+  if(low < high)
+  {
+    pivot_point = Parition(low, high);
+
+      QuickSort(low, pivot_point-1);
+      QuickSort(pivot_point+1, high);
+  }
 }
 
 int main()
 {
-
-  clock_t start_t,end_t;// processor time variable macro
-  double diff_t;// difference time calculation
-  int siz, total_moves;
-
+  int siz;
   cout << "\tArray Sorting Algorithm" << endl;
   cout << "\t=======================" << endl;
   cout << "\t\tQuick Sorting" << endl;
-  cout << "\t\t--------------" << endl;
+  cout << "\t\t-------------" << endl;
     cout << "Enter Size of Array: " ;
       cin >> siz;
 
-    cout << "Enter "<< siz <<"numbers: " << endl;
-    int elements[siz];
+    cout << "Enter "<< siz <<" numbers: " << endl;
+    for(int i = 0; i<siz; i++){
+      cin >> elements[i];
+    }
 
-      for(int i = 0; i<siz; i++){
-        cin >> elements[i];
+    QuickSort(0, siz-1);
+
+    cout << "Sorted Array: " << endl;
+      for(int i=0; i<siz; i++){
+        cout << elements[i] << " " ;
       }
-
-      start_t = clock();
-
-        total_moves = QuickSort(elements, siz);
-
-      end_t = clock();
-
-    cout << "Total [ " << total_moves <<" ] Moves used for " << siz << "Numbers." << endl;
-    	// Tells how much moves taken to sort
-    cout << "Start Time: " << start_t << endl;
-    cout << "End Time: " << end_t << endl;
-
-      diff_t = double(end_t - start_t) / CLOCKS_PER_SEC; //calculate the time difference CLOCKS_PER_SEC = 1000; ref time.h line 29
-
-    cout << "Total Process Time Consumed:" << diff_t << " Seconds .(Including Display loop)" << endl;
 
     return 0;
 }
