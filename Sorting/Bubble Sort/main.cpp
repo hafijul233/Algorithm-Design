@@ -1,61 +1,68 @@
 #include <iostream>
 #include <time.h>
+#include <fstream>
 
 using namespace std;
 
-int BubbleSort(long long elements[], long long siz){
-  long long counter = 0, temp;
+int BubbleSort(int elements[], int siz){
+
+  int counter = 0, temp;
 
   // loop will start from second Index and compare with previous one
-    for(long long i=1; i<siz; i++){
+    for(int i=0; i<siz-1; i++){
+
       // second loop will find the position of number
-      for(long long j =i; j<=siz; j++){
-        // Ex: elements[1]<elements[0] then swap there21 values
-        if(elements[j] < elements[j-1]){
+      for(int j =0; j<siz-i-1; j++){
+        // Ex: elements[0] > elements[1] then swap their values
+        if(elements[j] > elements[j+1]){
+
           temp = elements[j];
-          elements[j] = elements[j-1];
-          elements[j-1] = temp;
+          elements[j] = elements[j+1];
+          elements[j+1] = temp;
+
           counter++;// this will count all moves taken
         }
       }
     }
-    for(long long i=0; i<siz; i++){
+
+    for(int i=0; i<siz; i++){
       cout << elements[i] << " ";
     }
+
     cout << endl;
+
   return counter;
 }
 
 int main()
 {
+  
   clock_t start_t,end_t;// processor time variable macro
   double diff_t;// difference time calculation
-
-  long long siz, total_moves;
+  int siz, total_moves;
 
   cout << "\tArray Sorting Algorithm" << endl;
   cout << "\t=======================" << endl;
   cout << "\t\tBubble Sorting" << endl;
   cout << "\t\t--------------" << endl;
-
     cout << "Enter Size of Array: " ;
       cin >> siz;
 
     cout << "Enter "<< siz <<"numbers: " << endl;
+    int elements[siz];
 
-    long long elements[siz];
-      for(long long i = 0; i<siz; i++){
+      for(int i = 0; i<siz; i++){
         cin >> elements[i];
       }
 
       start_t = clock();
+
         total_moves = BubbleSort(elements, siz);
-      end_t = clock();
 
       end_t = clock();
 
     cout << "Total [ " << total_moves <<" ] Moves used for " << siz << "Numbers." << endl;
-
+    	// Tells how much moves taken to sort 
     cout << "Start Time: " << start_t << endl;
     cout << "End Time: " << end_t << endl;
 
