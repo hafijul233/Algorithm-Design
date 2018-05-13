@@ -14,7 +14,7 @@ int SieveOfEratosthenes(int n)
     for (int i=2; i*i<=n; i++){
       // If prime[i] is not changed, then it is a prime
       if (prime[i] == true){
-        // Update all multiples of p
+        // Update all multiples of i
         for (int j=i*2; j<=n; j += i){
           prime[j] = false;
         }
