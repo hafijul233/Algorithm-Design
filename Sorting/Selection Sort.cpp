@@ -2,25 +2,25 @@
 
 using namespace std;
 
-int BubbleSort(int elements[], int siz){
+void SelectionSort(int elements[], int siz){
 
   int temp;
 
   // loop will start from second Index and compare with previous one
-    for(int i=0; i<siz-1; i++){
-      // second loop will find the position of number
-      for(int j =0; j<siz-i-1; j++){
-        // Ex: elements[0] > elements[1] then swap their values
-        if(elements[j] > elements[j+1]){
-          temp = elements[j];
-          elements[j] = elements[j+1];
-          elements[j+1] = temp;
+    for(int i=0; i<siz; i++){
+      int j = i;
+      for(int k=i+1; k<siz; k++){
 
-          // this will count all moves taken
-        }
+        if(elements[k]<elements[j])
+            j = k;
+
+        temp = elements[i];
+        elements[i] = elements[j];
+        elements[j] = temp;
+
       }
     }
-	
+
     cout << "Sorted Array: " << endl;
     for(int i=0; i<siz; i++){
       cout << elements[i] << " ";
@@ -29,14 +29,15 @@ int BubbleSort(int elements[], int siz){
     cout << endl;
 }
 
-int main(){
+int main()
+{
 
   int siz;
 
   cout << "\t    Array Sorting Algorithm" << endl;
   cout << "\t    =======================" << endl;
-  cout << "\t\tBubble Sorting" << endl;
-  cout << "\t\t--------------" << endl;
+  cout << "\t\tSelection Sorting" << endl;
+  cout << "\t\t-----------------" << endl;
     cout << "Enter Size of Array: " ;
       cin >> siz;
 
@@ -46,7 +47,10 @@ int main(){
       for(int i = 0; i<siz; i++){
         cin >> elements[i];
       }
-        BubbleSort(elements, siz);
+
+        SelectionSort(elements, siz);
+
+
 
     return 0;
 }

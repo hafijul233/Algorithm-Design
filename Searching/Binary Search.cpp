@@ -1,8 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
 
-int elements[1000];
+using namespace std;
 
+//Using QuickSort to Sort All Elements of Array
 void exchange(int* x, int* y){
   int temp = *x;
   *x = *y;
@@ -27,7 +27,6 @@ int Parition(int elements[], int l, int h){
   return (i+1);
 
 }
-
 void QuickSort(int elements[], int low, int high){
   int pivot_point;
   if(low < high)
@@ -39,6 +38,7 @@ void QuickSort(int elements[], int low, int high){
   }
 }
 
+//Binary Search Algorithm
 int BinarySearch(int elements[], int siz, int key){
 
   int i, low = 1, high = siz, mid;
@@ -69,41 +69,42 @@ int BinarySearch(int elements[], int siz, int key){
       }
     }
 }
-
+//Main Function
 int main()
 {
-    int siz, key, i;
+  int siz, key;
 
-    printf("\t\t\tBinary Search Implementation Algorithm\n");
-    printf("\t\t\t--------------------------------------\n");
+  cout << "\t    Array Searching Algorithm" << endl;
+  cout << "\t    =========================" << endl;
+  cout << "\t\tBinary Search" << endl;
+  cout << "\t\t-------------" << endl;
+    cout << "Enter Size of Array: " ;
+      cin >> siz;
 
-      printf("\tEnter Array Size: ");
-        scanf("%d",&siz);
+    cout << "Enter "<< siz <<" numbers: " << endl;
+    int elements[siz];
 
-        int elements[siz];
-        printf("\tEnter elements of array: \n");
-          for(i=0; i<siz; i++){
-            scanf("%d",&elements[i]);
-          }
+      for(int i = 0; i<siz; i++){
+        cin >> elements[i];
+      }
 
-          QuickSort(elements,0,siz);
+      QuickSort(elements,0,siz);
 
-            printf("Sorting Elements in Ascending order:\n");
-            for(i=0;i<siz;i++){
-              printf("%d\t",elements[i]);
-            }
+      cout << "Sorting Elements in Ascending order:\n" << endl;
+        for(int i=0;i<siz;i++){
+          cout << elements[i] << " ";
+        }
+        cout << endl;
 
-        printf("\n\tEnter Search Number: ");
-          scanf("%d",&key);
-
+        cout << "\tEnter Search Number: ";
+          cin >> key;
 
 				int result = BinarySearch(elements, siz, key);
-
           if(result == 0){
-            printf("\tItem Not Found\n");
+            cout << "\tItem Not Found\n";
           }
           else{
-            printf("\tItem %d found at position: %d\n", key, result);
+            cout << "\tItem " << key <<" found at position: " << result+1 << endl;
           }
 
     return 0;
